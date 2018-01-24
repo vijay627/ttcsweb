@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+
+	<bean id="abstractTtcsCommandController"
+		class="com.ttcs.web.controller.AbstractTtcsCommandController"
+		abstract="true">
+		<property name="commandExecutor" ref="commandExecutor" />
+		<property name="systemErrorView" value="SystemError" />
+		<property name="successView" value="successpage" />
+	</bean>
+	
+	<bean id="userDetailsCommandController"
+		class="com.ttcs.web.controller.ListController">
+		<property name="controllers">
+			<list>
+				<bean
+					class="com.ttcs.web.controller.society.UserDetailsCommandController"
+					parent="abstractTtcsCommandController">
+					<property name="commandName"
+						value="userDetailsCommand" />
+					<property name="commandClass"
+						value="com.ttcs.web.command.society.UserDetailsCommand" />
+					<property name="inputFormView" value="login" />
+					<property name="successView" value="home" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="customerCriteriaCommandController"
+		class="com.ttcs.web.controller.ListController">
+		<property name="controllers">
+			<list>
+
+				<bean
+					class="com.ttcs.web.controller.society.CustomerCriteriaCommandController"
+					parent="abstractTtcsCommandController">
+					<property name="commandName"
+						value="customerDetailsCommand" />
+					<property name="commandClass"
+						value="com.ttcs.web.command.society.CustomerDetailsCommand" />
+					<property name="inputFormView" value="customerCriteria" />
+					<property name="successView"
+						value="customerDetails" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="customerDetailsCommandController"
+		class="com.ttcs.web.controller.ListController">
+		<property name="controllers">
+			<list>
+
+				<bean
+					class="com.ttcs.web.controller.society.CustomerDetailsCommandController"
+					parent="abstractTtcsCommandController">
+					<property name="commandName"
+						value="customerDetailsCommand" />
+					<property name="commandClass"
+						value="com.ttcs.web.command.society.CustomerDetailsCommand" />
+					<property name="inputFormView" value="customerDetails" />
+					<property name="successView"
+						value="result" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="adminParamPLCommandController"
+		class="com.ttcs.web.controller.ListController">
+		<property name="controllers">
+			<list>
+
+				<bean
+					class="com.ttcs.web.controller.society.AdminParamPLCommandController"
+					parent="abstractTtcsCommandController">
+					<property name="commandName"
+						value="adminParamPLCommand" />
+					<property name="commandClass"
+						value="com.ttcs.web.command.society.AdminParamPLCommand" />
+					<property name="inputFormView" value="adminParamPL" />
+					<property name="successView"
+						value="successpage" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="adminParamHLCommandController"
+		class="com.ttcs.web.controller.ListController">
+		<property name="controllers">
+			<list>
+
+				<bean
+					class="com.ttcs.web.controller.society.AdminParamHLCommandController"
+					parent="abstractTtcsCommandController">
+					<property name="commandName"
+						value="adminParamHLCommand" />
+					<property name="commandClass"
+						value="com.ttcs.web.command.society.AdminParamHLCommand" />
+					<property name="inputFormView" value="adminParamHL" />
+					<property name="successView"
+						value="successpage" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<bean id="adminParamGSCommandController"
+		class="com.ttcs.web.controller.ListController">
+		<property name="controllers">
+			<list>
+
+				<bean
+					class="com.ttcs.web.controller.society.AdminParamGSCommandController"
+					parent="abstractTtcsCommandController">
+					<property name="commandName"
+						value="adminParamGSCommand" />
+					<property name="commandClass"
+						value="com.ttcs.web.command.society.AdminParamGSCommand" />
+					<property name="inputFormView" value="adminParamGS" />
+					<property name="successView"
+						value="successpage" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<bean id="existingCustomerCommandController"
+		class="com.ttcs.web.controller.ListController">
+		<property name="controllers">
+			<list>
+
+				<bean
+					class="com.ttcs.web.controller.society.ExistingCustomerCommandController"
+					parent="abstractTtcsCommandController">
+					<property name="commandName"
+						value="existingCustomerCommand" />
+					<property name="commandClass"
+						value="com.ttcs.web.command.society.ExistingCustomerCommand" />
+					<property name="inputFormView"
+						value="existingCustomer" />
+					<property name="successView"
+						value="customerAccountDetails" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="updateCustomerCommandController"
+		class="com.ttcs.web.controller.ListController">
+		<property name="controllers">
+			<list>
+				<bean
+					class="com.ttcs.web.controller.society.UpdateCustomerCommandController" parent="abstractTtcsCommandController">
+					<property name="commandName"
+						value="updateCustomerCommand" />
+					<property name="commandClass"
+						value="com.ttcs.web.command.society.UpdateCustomerCommand" />
+					<property name="inputFormView" value="updateCustomer" />
+					<property name="successView"
+						value="existingCustomer" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="customerAccountDetailsCommandController"
+		class="com.ttcs.web.controller.ListController">
+		<property name="controllers">
+			<list>
+
+				<bean
+					class="com.ttcs.web.controller.society.CustomerAccountDetailsCommandController"
+					parent="abstractTtcsCommandController">
+					<property name="commandName"
+						value="customerAccountDetailsCommand" />
+					<property name="commandClass"
+						value="com.ttcs.web.command.society.CustomerAccountDetailsCommand" />
+					<property name="inputFormView"
+						value="customerAccountDetails" />
+					<property name="successView"
+						value="customerAccountDetails" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	
+
+	<bean id="newGenSavingsCommandController"
+		class="com.ttcs.web.controller.ListController">
+		<property name="controllers">
+			<list>
+				<bean
+					class="com.ttcs.web.controller.society.NewGenSavingsCommandController" parent="abstractTtcsCommandController">
+					<property name="commandName"
+						value="genSavingsDetailsCommand" />
+					<property name="commandClass"
+						value="com.ttcs.web.command.society.GenSavingsDetailsCommand" />
+					<property name="inputFormView" value="newGenSavings" />
+					<property name="successView"
+						value="customerAccountDetails" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="newFixedDepositCommandController"
+		class="com.ttcs.web.controller.ListController">
+		<property name="controllers">
+			<list>
+				<bean
+					class="com.ttcs.web.controller.society.NewFixedDepositCommandController" parent="abstractTtcsCommandController">
+					<property name="commandName"
+						value="newFixedDepositCommand" />
+					<property name="commandClass"
+						value="com.ttcs.web.command.society.NewFixedDepositCommand" />
+					<property name="inputFormView" value="newFixedDeposit" />
+					<property name="successView"
+						value="customerAccountDetails" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+			  
+	<bean id="newRecurringDepositCommandController"
+		class="com.ttcs.web.controller.ListController">
+		<property name="controllers">
+			<list>
+				<bean
+					class="com.ttcs.web.controller.society.NewRecurringDepositCommandController" parent="abstractTtcsCommandController">
+					<property name="commandName"
+						value="newRecurringDepositCommand" />
+					<property name="commandClass"
+						value="com.ttcs.web.command.society.NewRecurringDepositCommand" />
+					<property name="inputFormView" value="newRecurringDeposit" />
+					<property name="successView"
+						value="customerAccountDetails" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="newHandLoanCommandController"
+		class="com.ttcs.web.controller.ListController">
+		<property name="controllers">
+			<list>
+				<bean
+					class="com.ttcs.web.controller.society.NewHandLoanCommandController" parent="abstractTtcsCommandController">
+					<property name="commandName"
+						value="newHandLoanDetailsCommand" />
+					<property name="commandClass"
+						value="com.ttcs.web.command.society.HandLoanDetailsCommand" />
+					<property name="inputFormView" value="newHandLoan" />
+					<property name="successView"
+						value="customerAccountDetails" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="newPersonalLoanCommandController"
+		class="com.ttcs.web.controller.ListController">
+		<property name="controllers">
+			<list>
+				
+				<bean
+					class="com.ttcs.web.controller.society.NewPersonalLoanCommandController"
+					parent="abstractTtcsCommandController">
+					<property name="commandName"
+						value="personalLoanDetailsCommand" />
+					<property name="commandClass"
+						value="com.ttcs.web.command.society.PersonalLoanDetailsCommand" />
+					<property name="inputFormView"
+						value="newPersonalLoan" />
+					<property name="successView"
+						value="customerAccountDetails" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="newGenInsuranceCommandController"
+		class="com.ttcs.web.controller.ListController">
+		<property name="controllers">
+			<list>
+				<bean
+					class="com.ttcs.web.controller.society.NewGenInsuranceCommandController" parent="abstractTtcsCommandController">
+					<property name="commandName"
+						value="newGenInsuranceCommand" />
+					<property name="commandClass"
+						value="com.ttcs.web.command.society.NewGenInsuranceCommand" />
+					<property name="inputFormView" value="newGenInsurance" />
+					<property name="successView"
+						value="customerAccountDetails" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="newLoanInsuranceCommandController"
+		class="com.ttcs.web.controller.ListController">
+		<property name="controllers">
+			<list>
+				<bean
+					class="com.ttcs.web.controller.society.NewLoanInsuranceCommandController" parent="abstractTtcsCommandController">
+					<property name="commandName"
+						value="newLoanInsuranceCommand" />
+					<property name="commandClass"
+						value="com.ttcs.web.command.society.NewLoanInsuranceCommand" />
+					<property name="inputFormView" value="newLoanInsurance" />
+					<property name="successView"
+						value="customerAccountDetails" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="officeDepositAccountCommandController"
+		class="com.ttcs.web.controller.ListController">
+		<property name="controllers">
+			<list>
+				<bean
+					class="com.ttcs.web.controller.society.OfficeDepositAccountCommandController" parent="abstractTtcsCommandController">
+					<property name="commandName"
+						value="officeDepositAccountCommand" />
+					<property name="commandClass"
+						value="com.ttcs.web.command.society.OfficeDepositAccountCommand" />
+					<property name="inputFormView" value="officeDepositAccount" />
+					<property name="successView"
+						value="existingCustomer" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="officeLoanAccountCommandController"
+		class="com.ttcs.web.controller.ListController">
+		<property name="controllers">
+			<list>
+				<bean
+					class="com.ttcs.web.controller.society.OfficeLoanAccountCommandController" parent="abstractTtcsCommandController">
+					<property name="commandName"
+						value="officeLoanAccountCommand" />
+					<property name="commandClass"
+						value="com.ttcs.web.command.society.OfficeLoanAccountCommand" />
+					<property name="inputFormView" value="officeLoanAccount" />
+					<property name="successView"
+						value="existingCustomer" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="officeInsuranceAccountCommandController"
+		class="com.ttcs.web.controller.ListController">
+		<property name="controllers">
+			<list>
+				<bean
+					class="com.ttcs.web.controller.society.OfficeInsuranceAccountCommandController" parent="abstractTtcsCommandController">
+					<property name="commandName"
+						value="officeInsuranceAccountCommand" />
+					<property name="commandClass"
+						value="com.ttcs.web.command.society.OfficeInsuranceAccountCommand" />
+					<property name="inputFormView" value="officeInsuranceAccount" />
+					<property name="successView"
+						value="existingCustomer" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="officeInterestAccountCommandController"
+		class="com.ttcs.web.controller.ListController">
+		<property name="controllers">
+			<list>
+				<bean
+					class="com.ttcs.web.controller.society.OfficeInterestAccountCommandController" parent="abstractTtcsCommandController">
+					<property name="commandName"
+						value="officeInterestAccountCommand" />
+					<property name="commandClass"
+						value="com.ttcs.web.command.society.OfficeInterestAccountCommand" />
+					<property name="inputFormView" value="officeInterestAccount" />
+					<property name="successView"
+						value="existingCustomer" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="officeChargesAccountCommandController"
+		class="com.ttcs.web.controller.ListController">
+		<property name="controllers">
+			<list>
+				<bean
+					class="com.ttcs.web.controller.society.OfficeChargesAccountCommandController" parent="abstractTtcsCommandController">
+					<property name="commandName"
+						value="officeChargesAccountCommand" />
+					<property name="commandClass"
+						value="com.ttcs.web.command.society.OfficeChargesAccountCommand" />
+					<property name="inputFormView" value="officeChargesAccount" />
+					<property name="successView"
+						value="existingCustomer" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="officeExpendatureAccountCommandController"
+		class="com.ttcs.web.controller.ListController">
+		<property name="controllers">
+			<list>
+				<bean
+					class="com.ttcs.web.controller.society.OfficeExpendatureAccountCommandController" parent="abstractTtcsCommandController">
+					<property name="commandName"
+						value="officeExpendatureAccountCommand" />
+					<property name="commandClass"
+						value="com.ttcs.web.command.society.OfficeExpendatureAccountCommand" />
+					<property name="inputFormView" value="officeExpendatureAccount" />
+					<property name="successView"
+						value="existingCustomer" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="officeCorpusFundAccountCommandController"
+		class="com.ttcs.web.controller.ListController">
+		<property name="controllers">
+			<list>
+				<bean
+					class="com.ttcs.web.controller.society.OfficeCorpusFundAccountCommandController" parent="abstractTtcsCommandController">
+					<property name="commandName"
+						value="officeCorpusFundAccountCommand" />
+					<property name="commandClass"
+						value="com.ttcs.web.command.society.OfficeCorpusFundAccountCommand" />
+					<property name="inputFormView" value="officeCorpusFundAccount" />
+					<property name="successView"
+						value="existingCustomer" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+
+
+	<bean id="localeChangeInterceptor"
+		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<property name="paramName" value="hl" />
+	</bean>
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+
+
+
+</beans>

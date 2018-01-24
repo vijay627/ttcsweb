@@ -1,0 +1,324 @@
+<!DOCTYPE html">
+<html>
+<head>
+
+
+<link rel="stylesheet" type="text/css" media="all" href="../view/css/ttcsweb.css">
+<link rel="stylesheet" type="text/css" media="all" href="../view/css/font.css">
+<link rel="stylesheet" type="text/css" media="all" href="../view/css/menu.css">
+<link rel="stylesheet" type="text/css" media="all" href="../view/css/sky-forms.css">
+
+<link rel="stylesheet" type="text/css" href="../view/engine1/style.css" />
+<script src="../view/js/jquery.min.js"></script>
+<script src="../view/js/jquery.form.min.js"></script>
+<script src="../view/js/jquery.validate.min.js"></script>
+<script src="../view/js/jquery.modal.js"></script>
+
+<script type="text/javascript">
+
+</script>
+
+</head>
+<body class="bg-cyan">
+	<div class="menucontainer">
+		<header> 
+			<img class="banner" alt="TTCS Banner" src="../view/img/ttcsbanner.png"></header>
+		<nav>
+			<ul class="sky-mega-menu sky-mega-menu-response-to-icons sky-mega-menu-anim-flip">
+				<li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+				<li><a href="#"><i class="fa fa-edit"></i>Savings</a></li>
+				<li><a href="#"><i class="fa fa-edit"></i>Loans</a></li>
+				<li><a href="#"><i class="fa fa-edit"></i>Insurance</a></li>
+				<li><a href="#"><i class="fa fa-edit"></i>Calculators</a></li>
+				<li><a href="#"><i class="fa fa-edit"></i>Contacts</a></li>
+				<li><a href="#sky-form2" class="modal-opener"><i class="right"></i>Welcome <%=userName %></a> </li>
+				
+			</ul>
+		</nav>
+		
+	</div>
+	
+	<form action="#" id="sky-form2" class="sky-form sky-form-modal">
+			<header class="modal-header">User Details<i class=" fa fa-times modal-closer"></i></header>
+			
+			<fieldset class="modalfields">					
+				<section>
+					<div class="row">
+						<label >User Name: <c:out value="${userDetailsCommand.userName}"/></label>
+					</div>
+				</section>
+				
+				<section>
+					<div class="row">
+						<label>Email Id : <c:out value="${userDetailsCommand.userEmailId}"/></label>
+					</div>
+				</section>
+				<section>
+					<div class="row">
+						<label >Mobile Number : <c:out value="${userDetailsCommand.userMobileNumber}"/></label>
+					</div>
+				</section>
+			</fieldset>
+			
+				
+			
+	</form>
+</body>
+</html>
+
+<!DOCTYPE html">
+<html>
+
+<head>
+
+<title>Customer Details Page</title>
+
+<script type="text/javascript">
+
+	function fnDetails()
+	{
+		
+		alert('page Type '+document.getElementById("pageType").value);
+		document.getElementById("customerDetailsForm").submit(); 
+		
+	}
+</script>
+
+</head>
+
+<body >
+
+<div class="container">
+	
+	
+	<form:form commandName="customerDetailsCommand" id = "customerDetailsForm" name = "customerDetailsForm" action="customerDetails.spr" enctype="multipart/form-data" method="POST" >
+	
+		<input type="hidden" id="pageType" name="pageType" value="D">
+		
+		<spring:bind path="customerDetailsCommand.function"> 
+		  <input type="hidden" name="<c:out value="${status.expression}"/>"
+			id="<c:out value="${status.expression}"/>"
+			value="<c:out value="${status.value}"/>" />
+	     </spring:bind>
+					
+		<div class="controlEleContainer" id="controlEleContainer">
+			<header class="pageHeader">Customer Details</header>
+			<fieldset class="controlBox">					
+				<section class="controlSection">
+					<div class="row"> 
+						<label >Function: <c:out value="${customerDetailsCommand.function}"/></label>
+					</div>
+				</section>
+				
+				<section class="controlSection">
+					<div class="row">
+						<label>Customer Id : <c:out value="${customerDetailsCommand.custId}"/></label>
+					</div>
+				</section>
+			</fieldset>
+			
+			
+			<fieldset class="controlBox">
+				<legend class="legendsubhd">Personal Details</legend>
+					
+					<c:if test="${customerDetailsCommand.function != 'ADD'}">
+						<section class="controlSection" style="float:right;">
+						
+						<img class="custphoto" src="<%=request.getContextPath()%>/cust/${customerDetailsCommand.custId}.jpg" />
+						<img class="custsign" src="<%=request.getContextPath()%>/sign/${customerDetailsCommand.custId}.jpg" />
+					
+						</section>
+					</c:if>
+					
+					<section class="controlSection">
+					<label for="custName">First Name:</label>	
+					 <spring:bind path="customerDetailsCommand.firstName"> 
+						  <input type="text" name="<c:out value="${status.expression}"/>"
+							id="<c:out value="${status.expression}"/>"
+							value="<c:out value="${status.value}"/>" />
+					     </spring:bind>
+					</section>
+					<section class="controlSection">
+					<label for="custName">Last Name:</label>	
+					 <spring:bind path="customerDetailsCommand.lastName"> 
+						  <input type="text" name="<c:out value="${status.expression}"/>"
+							id="<c:out value="${status.expression}"/>"
+							value="<c:out value="${status.value}"/>" />
+					     </spring:bind>
+					</section>
+					
+					<section class="controlSection"><label for="gender">Gender:</label>
+					 <spring:bind path="customerDetailsCommand.gender"> 
+						  <select name="<c:out value="${status.expression}"/>"
+							  id="<c:out value="${status.expression}"/>"    >
+							<option value="MALE" <%if ("MALE".equals(selectedFunction)){ %>selected="selected" <%}%>>MALE</option>
+							<option value="FEMALE" <%if ("FEMALE".equals(selectedFunction)){ %>selected="selected" <%}%>>FEMALE</option>
+							</select>
+						</spring:bind>
+					</section>
+					<section class="controlSection" ><label for="dateOfBirth"> Date Of Birth:</label>
+					 <spring:bind path="customerDetailsCommand.dateOfBirth"> 
+						  <input type="date" name="<c:out value="${status.expression}"/>"
+							id="<c:out value="${status.expression}"/>"
+							value="<c:out value="${status.value}"/>"/>
+					     </spring:bind>
+					</section> 
+					
+					<section class="controlSection"><label for="employeeId">Employee Id:</label> 
+						 <spring:bind path="customerDetailsCommand.employeeId">
+						  <input type="text" name="<c:out value="${status.expression}"/>"
+							id="<c:out value="${status.expression}"/>"
+							value="<c:out value="${status.value}"/>"/>
+					     </spring:bind>
+					</section>  
+					<section class="controlSection"><label for="fatherSpouseName">Father/Spouse Name:</label>
+					 <spring:bind path="customerDetailsCommand.fatherSpouseName"> 
+						  <input type="text" name="<c:out value="${status.expression}"/>"
+							id="<c:out value="${status.expression}"/>"
+							value="<c:out value="${status.value}"/>"/>
+					     </spring:bind>
+					</section>
+					
+					<c:if test="${customerDetailsCommand.function == 'ADD'}">
+						<section class="controlSection">
+						<label for="custPhoto">Customer Photo:</label> 
+						 <spring:bind path="customerDetailsCommand.custPhoto"> 
+							  <input type="file" name="<c:out value="${status.expression}"/>"
+								id="<c:out value="${status.expression}"/>"
+								value="<c:out value="${status.value}"/>" placeholder="First Name"/>
+						     </spring:bind>
+						</section>
+						<section class="controlSection">
+						<label for="custPhoto">Customer Signature:</label> 
+						 <spring:bind path="customerDetailsCommand.custSign"> 
+							  <input type="file" name="<c:out value="${status.expression}"/>"
+								id="<c:out value="${status.expression}"/>"
+								value="<c:out value="${status.value}"/>" placeholder="First Name"/>
+						     </spring:bind>
+						</section>
+					</c:if>
+					
+					
+					
+					
+					<section class="controlSection"><label for="mobileNumber">Mobile Number:</label>
+					 <spring:bind path="customerDetailsCommand.mobileNumber"> 
+						  <input type="text" name="<c:out value="${status.expression}"/>"
+							id="<c:out value="${status.expression}"/>"
+							value="<c:out value="${status.value}"/>"/>
+					     </spring:bind>
+					</section> 
+				
+					<section class="controlSection"><label for="email">Email:</label>
+					 <spring:bind path="customerDetailsCommand.email"> 
+						  <input type="email" name="<c:out value="${status.expression}"/>"
+							id="<c:out value="${status.expression}"/>"
+							value="<c:out value="${status.value}"/>"/>
+					     </spring:bind>
+					</section> 
+					
+				
+				
+					
+					
+					
+					<section class="controlSection"><label for="presentAddress">Present Address:</label>
+					 <spring:bind path="customerDetailsCommand.presentAddress"> 
+						  <textarea  name="<c:out value="${status.expression}"/>"
+							id="<c:out value="${status.expression}"/>" 
+							cols="50" rows="3" > </textarea>
+					     </spring:bind>
+					</section> 
+					<section class="controlSection"><label for="permAddress">Permanent Address :</label>
+					<spring:bind path="customerDetailsCommand.permAddress"> 
+						  <textarea  name="<c:out value="${status.expression}"/>"
+							id="<c:out value="${status.expression}"/>" 
+							cols="50" rows="3" > </textarea>
+					     </spring:bind>
+					</section> 
+						
+			</fieldset>
+			
+			<fieldset class="controlBox">
+				<legend class="legendsubhd">Identity and Address Proof Details</legend>
+				
+				<section class="controlSection"><label for="idProof">Id Proof:</label>
+				 <spring:bind path="customerDetailsCommand.idProof"> 
+					  <input type="text" name="<c:out value="${status.expression}"/>"
+						id="<c:out value="${status.expression}"/>"
+						value="<c:out value="${status.value}"/>"  />
+				     </spring:bind>
+				</section> 
+				<section class="controlSection"><label for="idProofNumber">Id Proof Number:</label>
+				 <spring:bind path="customerDetailsCommand.idProofNumber"> 
+					  <input type="text" name="<c:out value="${status.expression}"/>"
+						id="<c:out value="${status.expression}"/>"
+						value="<c:out value="${status.value}"/>"  />
+				     </spring:bind>
+				</section> 
+			
+			
+				<section class="controlSection"><label for="addressProof">Address Id:</label>
+				 <spring:bind path="customerDetailsCommand.addressProof"> 
+					  <input type="text" name="<c:out value="${status.expression}"/>"
+						id="<c:out value="${status.expression}"/>"
+						value="<c:out value="${status.value}"/>"  />
+				     </spring:bind>
+				</section> 
+				<section class="controlSection"><label for="addressProofNumber">Address Proof Number:</label>
+				 <spring:bind path="customerDetailsCommand.addressProofNumber"> 
+					  <input type="text" name="<c:out value="${status.expression}"/>"
+						id="<c:out value="${status.expression}"/>"
+						value="<c:out value="${status.value}"/>"  />
+				     </spring:bind>
+				</section> 
+					
+			</fieldset>
+			
+			<fieldset class="controlBox">
+				<legend class="legendsubhd">Nominee Details</legend>
+					
+				<section class="controlSection"><label for="nomineeName">Nominee Name:</label>
+				
+				 <spring:bind path="customerDetailsCommand.nomineeName"> 
+					  <input type="text" name="<c:out value="${status.expression}"/>"
+						id="<c:out value="${status.expression}"/>"
+						value="<c:out value="${status.value}"/>"  />
+				     </spring:bind>
+				</section> 
+			
+				<section class="controlSection"><label for="nomineeDateOfBirth">Date Of Birth:</label>
+				 <spring:bind path="customerDetailsCommand.nomineeDateOfBirth"> 
+					  <input type="date" name="<c:out value="${status.expression}"/>"
+						id="<c:out value="${status.expression}"/>"
+						value="<c:out value="${status.value}"/>"  />
+				     </spring:bind>
+				</section> 
+			
+			
+				<section class="controlSection"><label for="relation">Relation:</label>
+				 <spring:bind path="customerDetailsCommand.relation"> 
+					  <input type="text" name="<c:out value="${status.expression}"/>"
+						id="<c:out value="${status.expression}"/>"
+						value="<c:out value="${status.value}"/>"  />
+				     </spring:bind>
+				</section> 
+				<section class="controlSection"><label for="nomineeAddress">Address:</label>
+				 <spring:bind path="customerDetailsCommand.nomineeAddress"> 
+					  <input type="text" name="<c:out value="${status.expression}"/>"
+						id="<c:out value="${status.expression}"/>"
+						value="<c:out value="${status.value}"/>"  />
+				     </spring:bind>
+				</section> 
+				</fieldset>
+				
+				<section class="btnSection">
+					<input type="button" class="btn"  id="btnClear"  onclick="fnClear()" value=" Clear " />
+					<input type="button" class="btn"  id="btnDet"  onclick="fnDetails()" value=" Submit " />
+					
+				</section>
+		</div>	
+	</form:form>
+</div>
+</body>
+</html>

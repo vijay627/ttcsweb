@@ -1,0 +1,51 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:lang="http://www.springframework.org/schema/lang" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+
+	<bean id="society.UserDetailsServiceCommand" class="com.ttcs.command.society.UserDetailsServiceCommand">
+		<property name="userDetailsDao" ref="userDetailsDao"/>
+    </bean>
+    
+    <bean id="society.CustomerDetailsServiceCommand" class="com.ttcs.command.society.CustomerDetailsServiceCommand">
+    	<property name="customerDetailsDao" ref="customerDetailsDao"/>
+    </bean>
+	
+	<bean id="society.AdminParamHLServiceCommand" class="com.ttcs.command.society.AdminParamHLServiceCommand">
+    	<property name="adminParamHLDao" ref="adminParamHLDao"/>
+    </bean>
+    
+	<bean id="society.AdminParamPLServiceCommand" class="com.ttcs.command.society.AdminParamPLServiceCommand">
+    	<property name="adminParamPLDao" ref="adminParamPLDao"/>
+    </bean>
+    
+    <bean id="society.AdminParamGSServiceCommand" class="com.ttcs.command.society.AdminParamGSServiceCommand">
+    	<property name="adminParamGSDao" ref="adminParamGSDao"/>
+    </bean>
+	
+	<bean id="society.ExistingCustomerServiceCommand" class="com.ttcs.command.society.ExistingCustomerServiceCommand">
+    </bean>
+    
+    
+    
+    <bean id="society.GenSavingsDetailsServiceCommand" class="com.ttcs.command.society.GenSavingsDetailsServiceCommand">
+    	<property name="genSavingsDetailsDao" ref="genSavingsDetailsDao"/>
+    </bean>
+    
+    <bean id="society.HandLoanDetailsServiceCommand" class="com.ttcs.command.society.HandLoanDetailsServiceCommand">
+    	<property name="handLoanDetailsDao" ref="handLoanDetailsDao"/>
+    	<property name="hlEMIBreakupDetailsDao" ref="hlEMIBreakupDetailsDao"/>
+    </bean>
+    
+    <bean id="society.PersonalLoanDetailsServiceCommand" class="com.ttcs.command.society.PersonalLoanDetailsServiceCommand">
+    	<property name="personalLoanDetailsDao" ref="personalLoanDetailsDao"/>
+    	<property name="plEMIBreakupDetailsDao" ref="plEMIBreakupDetailsDao"/>
+    </bean>
+    
+    <bean id="society.TranGenSavingsServiceCommand" class="com.ttcs.command.society.TranGenSavingsServiceCommand">
+    	<property name="tranGenSavingsDao" ref="tranGenSavingsDao"/>
+    </bean>
+    
+    <bean id="society.StmtGenSavingsServiceCommand" class="com.ttcs.command.society.StmtGenSavingsServiceCommand">
+    	<property name="tranGenSavingsDao" ref="tranGenSavingsDao"/>
+    </bean>
+    
+	
+</beans>

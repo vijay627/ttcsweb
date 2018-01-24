@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC
+    "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN"
+    "http://getahead.org/dwr/dwr20.dtd">
+    
+<dwr>
+	
+    <allow>
+    	
+    	<convert converter="bean" match="com.ttcs.commons.pojo.utils.EMIBean" />
+        <convert converter="bean" match="com.ttcs.commons.pojo.utils.EMIBreakupBean" />
+        <convert converter="bean" match="com.ttcs.commons.pojo.society.TranGenSavingsServiceBean" /> 
+        <convert converter="bean" match="com.ttcs.commons.pojo.society.HandLoanDetailsServiceBean" />
+        <convert converter="bean" match="com.ttcs.commons.pojo.society.HLEMIBreakupServiceBean" />		
+        <convert converter="bean" match="com.ttcs.commons.pojo.society.PersonalLoanDetailsServiceBean" />
+        <convert converter="bean" match="com.ttcs.commons.pojo.society.PLEMIBreakupServiceBean" />
+		
+		
+  		
+		
+		
+		
+    	<create creator="spring" javascript="TtcsDwrUtilities" scope="page">
+        	<param name="beanName" value="ttcsDwrUtilities" />
+        </create>
+        
+    	<!-- <convert converter="bean" match="com.vijay.web.EmployeeDet"></convert>
+    	
+    	<create creator="new" javascript="EmployeeDetails"  scope="page">
+			<param name="class" value="com.vijay.web.EmployeeDetails" />
+		</create>
+
+		
+    	
+    	 
+        <convert converter="bean" match="bgc.gen.web.command.printmanagement.WorkDescriptionCommand" />
+        <convert converter="bean" match="bgc.gen.commons.fdt.transpositionlist.FetchSNSIntroAndSpliceCardDetailsBean" />  
+        <convert converter="bean" match="bgc.gen.commons.fdt.printmanagement.IntroAndSpliceCardBean" />
+        <convert converter="bean" match="bgc.gen.commons.fdt.transpositionlist.CreateIntroCardBean" /> 
+        <convert converter="bean" match="bgc.gen.commons.fdt.transpositionlist.IntroCardPairBean" />   
+        <convert converter="bean" match="bgc.gen.commons.fdt.printmanagement.JobInfoBean" /> 
+        
+        
+ 
+ 		 <create creator="spring" javascript="TranspositionDwrUtilities" scope="page">
+        	<param name="beanName" value="transpositionDwrUtilities"/>
+        </create>
+        
+        <create creator="spring" javascript="PrintManagementDwrUtilities" scope="page">
+        	<param name="beanName" value="printManagementDwrUtilities"/> 
+        </create> 
+
+        <convert converter="bean" match="com.ttcs.commons.pojo.mocktest.TestDetailsBean" />
+        <convert converter="bean" match="com.ttcs.commons.pojo.mocktest.SectionDetailsBean" />        
+        <convert converter="bean" match="com.ttcs.commons.pojo.mocktest.QuestionDetailsBean" /> 
+		<convert converter="bean" match="com.ttcs.commons.pojo.mocktest.OptionDetailsBean" />
+		<convert converter="bean" match="java.util.ArrayList" />
+		<convert converter="bean" match="java.util.Map" />
+		<convert converter="bean" match="java.util.List" />
+		<convert converter="bean" match="java.util.Iterator" />
+		<convert converter="bean" match="java.util.Set" />
+
+		
+ 		 <create creator="spring" javascript="TtcsDwrUtilities" scope="page">
+        	<param name="beanName" value="ttcsDwrUtilities" />
+        </create>-->
+         
+		          
+    </allow>
+    
+</dwr>

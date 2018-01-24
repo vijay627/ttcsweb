@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	<bean id="hibernateSupport"	class="org.springframework.orm.hibernate3.support.HibernateDaoSupport" abstract="true">
+		<property name="sessionFactory" ref="ttcsSessionFactory" />
+	</bean>
+	
+	
+	<bean id="hibernateSupportForInterceptor"	class="org.springframework.orm.hibernate3.support.HibernateDaoSupport" abstract="true">
+		<property name="sessionFactory" ref="sessionFactoryForInterceptor" />
+	</bean>
+	
+	
+	<bean id="ttcsDaoForInterceptor" class="com.ttcs.dao.TtcsDao" parent="hibernateSupportForInterceptor" />
+	
+	<bean id="userDetailsDao" class="com.ttcs.dao.society.UserDetailsDaoImpl"  parent="hibernateSupport"> </bean> 
+	<bean id="adminParamHLDao" class="com.ttcs.dao.society.AdminParamHLDaoImpl"  parent="hibernateSupport"> </bean> 
+	<bean id="adminParamPLDao" class="com.ttcs.dao.society.AdminParamPLDaoImpl"  parent="hibernateSupport"> </bean> 
+	<bean id="adminParamGSDao" class="com.ttcs.dao.society.AdminParamGSDaoImpl"  parent="hibernateSupport"> </bean> 
+	
+	<bean id="customerDetailsDao" class="com.ttcs.dao.society.CustomerDetailsDaoImpl"  parent="hibernateSupport"> </bean> 
+	
+	<bean id="genSavingsDetailsDao" class="com.ttcs.dao.society.GenSavingsDetailsDaoImpl"  parent="hibernateSupport"> </bean> 
+	
+	<bean id="personalLoanDetailsDao" class="com.ttcs.dao.society.PersonalLoanDetailsDaoImpl"  parent="hibernateSupport"> </bean> 	
+	<bean id="plEMIBreakupDetailsDao" class="com.ttcs.dao.society.PLEMIBreakupDetailsDaoImpl"  parent="hibernateSupport"> </bean> 
+	
+	<bean id="handLoanDetailsDao" class="com.ttcs.dao.society.HandLoanDetailsDaoImpl"  parent="hibernateSupport"> </bean> 	
+	<bean id="hlEMIBreakupDetailsDao" class="com.ttcs.dao.society.HLEMIBreakupDetailsDaoImpl"  parent="hibernateSupport"> </bean> 
+	
+	<bean id="tranGenSavingsDao" class="com.ttcs.dao.society.TranGenSavingsDaoImpl"  parent="hibernateSupport"> </bean> 
+	
+	
+	
+</beans>
